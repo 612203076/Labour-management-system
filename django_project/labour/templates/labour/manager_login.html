@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'LMS/style.css' %}">
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <header class="head">
+        
+    </header>
+    <div class="wrapper">
+        <span class="close-icon"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="form-box login">
+            <h2>Login</h2>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                   {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <!-- Use Crispy Forms tags for better control -->
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                    {{ form.username.label_tag }}
+                    {{ form.username }} <!-- Use Crispy Forms tag -->
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    {{ form.password.label_tag }}
+                    {{ form.password }} <!-- Use Crispy Forms tag -->
+                </div>
+                <div class="remember-forgot">
+                    {{ form.remember.label_tag }}
+                    {{ form.remember }}
+                    <a href="#">Forgot-password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <label>Don't have an account?</label>
+                    <a class="ml-2" href="{% url 'manager_register' %}">Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Include crispy forms JavaScript -->
+    <script src="{% static 'crispy_forms/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'crispy_forms/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'crispy_forms/js/crispy.js' %}"></script>
+</body>
+</html>

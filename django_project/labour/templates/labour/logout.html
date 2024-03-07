@@ -1,0 +1,11 @@
+{% extends "LMS/home.html" %}
+
+{% block content %}
+   <h2>You have been logged out!</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="m1-2" href="{% url 'LMS-labour_login' %}">Login</a>
+        </small>
+    </div>
+{% endblock %}
+

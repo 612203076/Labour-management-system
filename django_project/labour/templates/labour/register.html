@@ -1,0 +1,86 @@
+{% extends "LMS/home.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="content-section" style="margin-top: 100px;">
+    <form method="POST">      
+
+            {% csrf_token %}
+            {{ form|crispy }}
+        {{ form.hidden }} <!-- Renders hidden fields -->
+       <!-- <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join Today</legend>
+            <div class="form-group">
+                
+
+                {% if form.username.errors %}
+                    {{ form.username.label_tag }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username.label_tag }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+               
+                {% if form.email.errors %}
+                    {{ form.email.label_tag }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email.label_tag }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="trade" class="form-control-label">Trade:</label>
+                <select class="form-control form-control-lg" name="trade" id="trade">
+                    <option value="">Select Trade</option>
+                    {% for trade in trades %}
+                        <option value="{{ trade.id }}">{{ trade.trade }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                
+                {% if form.password.errors %}
+                    {{ form.password.label_tag }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password.label_tag }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password.label_tag}}
+                    <div class="invalid-feedback">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.confirm_password.label_tag }}
+                {% endif %}
+            </div>
+        </fieldset>-->
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Sign up</button>
+        </div>
+    </form>
+</div>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        Already Have An Account? <a class="ml-2 btn btn-link" href="{% url 'labour_login' %}">Sign In</a>
+    </small>
+</div>
+{% endblock %}
